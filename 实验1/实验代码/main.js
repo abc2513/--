@@ -42,7 +42,7 @@ class publisher {//发布者
         //创建内嵌标题和input的div
         this.div = document.createElement("div");
         this.h3 = document.createElement("div");
-        this.h3.innerText=`发布者（频道${this.types.map(item=>item+'；')}）：`;
+        this.h3.innerText=`发布者（频道${this.types.map(item=>item??'all'+'；')}）：`;
         this.input = document.createElement("input");
         this.div.appendChild(this.h3);
         this.div.appendChild(this.input);
@@ -89,3 +89,8 @@ const subscriber_a = new subscriber(pubSub,['a']);//创建一个订阅者，订�
 const subscriber_b = new subscriber(pubSub,['b']);//创建一个订阅者，订阅频道为b
 const subscriber_ab = new subscriber(pubSub,['a','b']);//创建一个订阅者，订阅频道为a和b
 const subscribe_c= new subscriber(pubSub,['c']);//创建一个订阅者，订阅频道为c
+
+
+const publisher_only= new publisher(pubSub, []);//创建一个发布者，发布频道为空
+//点对点模式
+//TODO
