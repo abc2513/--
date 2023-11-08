@@ -72,5 +72,9 @@ class subscriber {//订阅者
     }
 }
 const pubSub = new PubSub();
-const publisher1 = new publisher(pubSub, ['a']);
-const subscriber1 = new subscriber(pubSub,['a','b']);
+const publisher_a = new publisher(pubSub, ['a']);//创建一个发布者，发布频道为a
+const publisher_b = new publisher(pubSub, ['b']);//创建一个发布者，发布频道为b
+const publisher_ab = new publisher(pubSub, ['a','b']);//创建一个发布者，发布频道为a和b
+const subscriber_a = new subscriber(pubSub,['a']);//创建一个订阅者，订阅频道为a
+const subscriber_b = new subscriber(pubSub,['b']);//创建一个订阅者，订阅频道为b
+const subscriber_ab = new subscriber(pubSub,['a','b']);//创建一个订阅者，订阅频道为a和b
