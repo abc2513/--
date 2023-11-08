@@ -1,4 +1,4 @@
-.doc
-.ppt
-.pdf
-.zip
+*.doc
+*.ppt
+*.pdf
+*.zip
