@@ -7,8 +7,16 @@ class PubSub {//发布订阅模式，事件的调度中心
     
     publish(type, data) {
         console.log('调度中心发布事件',type,data);
+        if(type===null){
+            //广播模式
+            for (const key in this.message) {
+                this.message[key].forEach(item => item(data))
+            }
+            return;
+        }
         if (this.message[type]) {
             this.message[type].forEach(item => item(data))
+            return
         }
     };
     subscribe(type, cb) {//订阅
@@ -38,6 +46,7 @@ class publisher {//发布者
         this.input = document.createElement("input");
         this.div.appendChild(this.h3);
         this.div.appendChild(this.input);
+        this.div.style.display="flex";
         document.body.appendChild(this.div);
         //绑定失焦事件
         this.input.addEventListener("blur",()=>{
@@ -75,6 +84,8 @@ const pubSub = new PubSub();
 const publisher_a = new publisher(pubSub, ['a']);//创建一个发布者，发布频道为a
 const publisher_b = new publisher(pubSub, ['b']);//创建一个发布者，发布频道为b
 const publisher_ab = new publisher(pubSub, ['a','b']);//创建一个发布者，发布频道为a和b
+const publisher_all= new publisher(pubSub, [null]);//创建一个发布者，为广播模式
 const subscriber_a = new subscriber(pubSub,['a']);//创建一个订阅者，订阅频道为a
 const subscriber_b = new subscriber(pubSub,['b']);//创建一个订阅者，订阅频道为b
 const subscriber_ab = new subscriber(pubSub,['a','b']);//创建一个订阅者，订阅频道为a和b
+const subscribe_c= new subscriber(pubSub,['c']);//创建一个订阅者，订阅频道为c
