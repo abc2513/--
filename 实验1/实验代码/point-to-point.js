@@ -74,18 +74,20 @@ class Consumer {
     }
     consume() {
         const message = this.messageQueue.receive();
-        this.message.innerText += message+';';
+        this.message.innerText += message + ';';
     }
 }
 
 
-(()=>{const title = document.createElement("h3");
-title.innerText = "点对点";
-document.body.appendChild(title);
+(() => {
+    const title = document.createElement("h3");
+    title.innerText = "点对点";
+    document.body.appendChild(title);
 
-const messageQueue = new MessageQueue();
-const producer1 = new Producer(messageQueue);
-const producer2 = new Producer(messageQueue);
-const consumer1 = new Consumer(messageQueue);
-const consumer2 = new Consumer(messageQueue);
-const consumer3 = new Consumer(messageQueue);})()
+    const messageQueue = new MessageQueue();
+    const producer1 = new Producer(messageQueue);
+    const producer2 = new Producer(messageQueue);
+    const consumer1 = new Consumer(messageQueue);
+    const consumer2 = new Consumer(messageQueue);
+    const consumer3 = new Consumer(messageQueue);
+})()
