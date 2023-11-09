@@ -80,7 +80,8 @@ class subscriber {//订阅者
         this.div.innerText += data + ' ；';
     }
 }
-const title = document.createElement("h3");
+(()=>{
+    const title = document.createElement("h3");
 title.innerText = "发布订阅模式";
 document.body.appendChild(title);
 
@@ -92,3 +93,4 @@ const subscriber_a = new subscriber(pubSub, ['a']);//创建一个订阅者，订
 const subscriber_b = new subscriber(pubSub, ['b']);//创建一个订阅者，订阅频道为b
 const subscriber_ab = new subscriber(pubSub, ['a', 'b']);//创建一个订阅者，订阅频道为a和b
 const subscribe_c = new subscriber(pubSub, ['c']);//创建一个订阅者，订阅频道为c
+})();

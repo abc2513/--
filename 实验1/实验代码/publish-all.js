@@ -1,5 +1,5 @@
 //不分频道的发布订阅模式
-class PubSub{
+class PubSubAll{
     constructor(){
         this.message = [];//已经注册的组件
     }
@@ -13,7 +13,7 @@ class PubSub{
         this.message = this.message.filter(item => item !== cb);
     }
 }
-class Publisher{
+class PublisherAll{
     constructor(pubSub){
         this.pubSub = pubSub;
 
@@ -34,7 +34,7 @@ class Publisher{
         this.pubSub.publish(data);
     }
 }
-class Subscriber{
+class Receiver{
     constructor(pubSub){
         this.pubSub = pubSub;
         this.pubSub.subscribe(this.cb);//注册
@@ -48,11 +48,14 @@ class Subscriber{
         this.div.innerText += data + ' ；';
     }
 }
-const title= document.createElement("h3");
+(()=>{
+    const title= document.createElement("h3");
 title.innerText = "全广播";
 document.body.appendChild(title);
-const pubSub = new PubSub();
-const publisher = new Publisher(pubSub);
-const publisher2 = new Publisher(pubSub);
-const subscriber = new Subscriber(pubSub);
-const subscriber2 = new Subscriber(pubSub);
+const pubSub = new PubSubAll();
+const publisher = new PublisherAll(pubSub);
+const publisher2 = new PublisherAll(pubSub);
+const subscriber = new Receiver(pubSub);
+const subscriber2 = new Receiver(pubSub);
+
+})()
